@@ -1,19 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jersey+10&display=swap');
 body{
-    
+    background-color: #0F0238;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 100;
+    font-style: normal;
+    overflow-x: hidden;
 }
 #video-grid{
     width: 100%;
-    border: 1px solid black;
+    
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 2px;
  }
+#video-grid video{
+    /* Add your styles for the video elements here */
+  
+    border-radius: 10px;
+    box-shadow: 0 0 10px #B706BF;
+}
 
-#roomname {
-    /* Add your styles for the roomname div here */
-
-
+textarea{
+    /* add shadow to the textarea */
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: #0F0238;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 300;
+    font-style: normal;
+    font-size:larger;
 }
 #container{
     width: 100%;
