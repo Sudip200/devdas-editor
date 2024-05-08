@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebRtc</title>
     <script src="./main-code.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+   
 </head>
 <body>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <!-- <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script> -->
   <div id="roomname"></div>
-  <textarea id="editor" rows="20" style="background-color: black;color: white;" ></textarea>
   <div id="video-grid"></div>
+  <!-- <select id="language">
+    <option value="javascript">Javascript</option>
+    <option value="python">Python</option>
+    <option value="java">Java</option>
+    <option value="c">C</option>
+    <option value="cpp">C++</option>
+  </select> -->
+  <div id="text-area-div">
+    <textarea id="editor" rows="60" cols="100" style="background-color: black;color: white;" ></textarea> 
+    <!--add dropdown to select language-->
+    
+    <!-- <div id="container"></div> -->
+  </div>
+  
 </body>
 </html>

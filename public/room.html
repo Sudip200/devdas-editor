@@ -9,20 +9,25 @@
     <div id="blur-room-div">
         <h2>Join Room</h2>
         <p>Enter the room name to join the room</p>
-        <input type="text" id="roomname" placeholder="Enter Room Name" value="2136">
+        <input type="text" id="roomname" placeholder="Enter Room Name">
         <button id="joinroom" onclick="joinroom()">Join Room</button>
         <button id="generateroom" onclick="generateroom()">Generate Room Id</button>
     </div>
 </body>
 <style>
+   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jersey+10&display=swap');
     body {
         background-color: #f2f2f2;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        font-family: Arial, sans-serif;
-     
+        font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: normal;
+        gap: 20px;
+        align-items: center;
+       
     }
 
     #blur-room-div {
@@ -35,11 +40,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 20px;
+        font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
         
         
     }
 
-    #blur-room-div h1 {
+    #blur-room-div h2 {
         font-size: 24px;
         margin-bottom: 20px;
     }
@@ -47,15 +56,33 @@
     #blur-room-div p {
         font-size: 16px;
         margin-bottom: 10px;
+        font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+    }
+    #blur-room-div input{
+        padding: 10px;
+        width: 80%;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+       
     }
 
     #blur-room-div button {
         padding: 10px 20px;
         background-color: #007bff;
         color: white;
+        margin-bottom: 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+        width: 80%;
     }
 </style>
 <script>
@@ -65,7 +92,9 @@
     }
 
     function generateroom() {
-        var roomname = Math.floor(Math.random() * 10000);
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const special = '!@#$%^&*()_+';
+        var roomname = Math.floor(Math.random()*1000)+letters[Math.floor(Math.random() * letters.length)]+letters[Math.floor(Math.random() * letters.length)]+letters[Math.floor(Math.random() * letters.length)]+letters[Math.floor(Math.random() * letters.length)]+special[Math.floor(Math.random() * special.length)];
         window.location.href = '/room/' + roomname;
     }
 </script>

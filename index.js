@@ -46,9 +46,9 @@ io.on("connection",(socket)=>{
     socket.on('onchange',(data,room)=>{
        
             console.log("Room "+data+" message "+room)
-           io.in(room).emit('onrecv',data)
+          io.in(room).emit('onrecv',data)
     })
-   
+  
     socket.on('disconnect',()=>{
         console.log("Client disconnected ")
     })
