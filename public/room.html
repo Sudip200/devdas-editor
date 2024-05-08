@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="blur-room-div">
+        <h2>Join Room</h2>
+        <p>Enter the room name to join the room</p>
+        <input type="text" id="roomname" placeholder="Enter Room Name" value="2136">
+        <button id="joinroom" onclick="joinroom()">Join Room</button>
+        <button id="generateroom" onclick="generateroom()">Generate Room Id</button>
+    </div>
+</body>
+<style>
+    body {
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+     
+    }
+
+    #blur-room-div {
+        width: 400px;
+        height: 400px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        
+    }
+
+    #blur-room-div h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    #blur-room-div p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    #blur-room-div button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<script>
+    function joinroom() {
+        var roomname = document.getElementById('roomname').value;
+        window.location.href = '/room/' + roomname;
+    }
+
+    function generateroom() {
+        var roomname = Math.floor(Math.random() * 10000);
+        window.location.href = '/room/' + roomname;
+    }
+</script>
+</html>
