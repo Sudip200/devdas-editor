@@ -5,9 +5,9 @@ const express = require('express');
 const app = express();
 const {Server} =require('socket.io')
 
-let certificate =fs.readFileSync(__dirname+'/ssl/certificate.crt','utf8')
-let privateKey =fs.readFileSync(__dirname+'/ssl/private.key','utf8')
-let ca =fs.readFileSync(__dirname+'/ssl/ca_bundle.crt','utf8')
+let certificate =fs.readFileSync(__dirname+'/ssl/certificate.crt')
+let privateKey =fs.readFileSync(__dirname+'/ssl/private.key')
+let ca =fs.readFileSync(__dirname+'/ssl/ca_bundle.crt')
 
 const httpServer=http.createServer({
     key:privateKey,
