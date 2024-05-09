@@ -53,7 +53,7 @@ io.on("connection",(socket)=>{
         console.log("Client disconnected ")
     })
 })
-httpServer.listen(80, function () {
+httpServer.listen(8080, function () {
     console.log('Example app listening on port 80');
   }
 );
