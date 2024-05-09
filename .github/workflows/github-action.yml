@@ -26,6 +26,6 @@ jobs:
               git checkout master &&
               git pull origin master &&
               npm install &&
-              pkill -f node &&
-              npm start
+              forever stop index.js &&
+              forever start -o output.log -e error.log index.js
               '
