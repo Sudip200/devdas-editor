@@ -7,10 +7,12 @@ const {Server} =require('socket.io')
 
 let certificate =fs.readFileSync(__dirname+'/ssl/certificate.crt','utf8')
 let privateKey =fs.readFileSync(__dirname+'/ssl/private.key','utf8')
+let ca =fs.readFileSync(__dirname+'/ssl/ca_bundle.crt','utf8')
 
 const httpServer=http.createServer({
     key:privateKey,
-    cert:certificate
+    cert:certificate,
+    ca:ca
 },app);
 
 const io = new Server(httpServer)
