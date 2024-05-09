@@ -54,9 +54,7 @@ io.on("connection",(socket)=>{
         socket.broadcast.emit('onpeerid',data)
     })
     socket.on('onchange',(data,room)=>{
-       
-            console.log("Room "+data+" message "+room)
-          io.in(room).emit('onrecv',data)
+          socket.to(room).emit('onrecv',data)
     })
   
     socket.on('disconnect',()=>{

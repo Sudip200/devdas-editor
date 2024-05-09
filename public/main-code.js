@@ -116,7 +116,8 @@ textArea.addEventListener('input', (event) => {
   socket.emit('onchange', textArea.value, roomid);
 });
 socket.on('onrecv', (data) => {
-  textArea.innerHTML= data;
+  
+  textArea.value = data;
 });
  
 
