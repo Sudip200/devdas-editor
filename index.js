@@ -1,5 +1,5 @@
 
-const http =require('http')
+const https =require('https')
 const fs =require('fs')
 const express = require('express');
 const app = express();
@@ -9,7 +9,7 @@ let certificate =fs.readFileSync(__dirname+'/ssl/certificate.crt')
 let privateKey =fs.readFileSync(__dirname+'/ssl/private.key')
 let ca =fs.readFileSync(__dirname+'/ssl/ca_bundle.crt')
 
-const httpServer=http.createServer({
+const httpServer=https.createServer({
     key:privateKey,
     cert:certificate,
     ca:ca
