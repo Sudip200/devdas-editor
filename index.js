@@ -17,6 +17,7 @@ const httpServer=https.createServer({
 
 const io = new Server(httpServer)
 
+const date = new Date();
 
 
 app.get('/',(req,res)=>{
@@ -32,12 +33,16 @@ app.get('/room/:id',(req,res)=>{
 
     res.sendFile(__dirname+'/public/index.html')
 })
+app.get('/style2.css',(req,res)=>{
+    res.sendFile(__dirname+'/public/sliding.css')
+})
 
 
 io.on("connection",(socket)=>{
    //get ip address of the user
     const ip = socket.handshake.address
-    console.log("Client connected "+ip)
+    console.log("Client connected "+date.toLocaleString()+' '
+    +ip)
     //detect which room the user connecting to
     socket.on('joinroom',(room,peerid)=>{
         console.log("Room "+room+" peerid "+peerid)
@@ -55,6 +60,19 @@ io.on("connection",(socket)=>{
     })
     socket.on('onchange',(data,room)=>{
           socket.to(room).emit('onrecv',data)
+    })
+    socket.on('onmousedown',(x,y,room)=>{
+        console.log(x,y)
+        socket.to(room).emit('onmousedown',x,y)
+    })
+    socket.on('onmousemove',(x,y,room)=>{
+        socket.to(room).emit('onmousemove',x,y)
+    })
+    socket.on('onmouseup',(room)=>{
+        socket.to(room).emit('onmouseup')
+    })
+    socket.on('clear',(room)=>{
+        socket.to(room).emit('clear')
     })
   
     socket.on('disconnect',()=>{
