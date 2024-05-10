@@ -32,7 +32,7 @@
     let room = path.split('/')[len-1];
     console.log(room);
     roomid = room;
-    roomname.innerText = room;
+    roomname.innerText ='Room '+room;
   }
   peer.on('open',(id)=>{
   console.log(id);

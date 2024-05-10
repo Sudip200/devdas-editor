@@ -19,6 +19,7 @@ body{
     justify-content: space-evenly;
     flex-wrap: wrap;
     padding: 2px;
+    gap: 5px;
  }
 #video-grid video{
     /* Add your styles for the video elements here */
@@ -95,7 +96,17 @@ textarea{
     cursor: pointer;
     display: none;
   }
+#roomname{
+    color : white;
+    font-weight: 400;
+}
 
+@media screen and (max-width: 600px){
+    #video-grid video{
+       width: 150px;
+        
+    }
+}
 
 
 
