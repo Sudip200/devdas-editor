@@ -15,11 +15,17 @@ const httpsServer=https.createServer({
     cert:certificate,
     ca:ca
 },app);
-const httpServer = http.createServer(app)
+const httpServer = http.createServer((req,res)=>{
+    res.writeHead(301,{
+        Location:'https://'+req.headers.host+req.url
+    })
+    res.end();
+
+})
 
 
 const io = new Server(httpsServer)
-const io2 = new Server(httpServer)
+//const io2 = new Server(httpServer)
 
 
 const date = new Date();
@@ -84,47 +90,6 @@ io.on("connection",(socket)=>{
         console.log("Client disconnected ")
     })
 })
-io2.on("connection",(socket)=>{
-    //get ip address of the user
-     const ip = socket.handshake.address
-     console.log("Client connected "+date.toLocaleString()+' '
-     +ip)
-     //detect which room the user connecting to
-     socket.on('joinroom',(room,peerid)=>{
-         console.log("Room "+room+" peerid "+peerid)
-         socket.join(room)
-         socket.broadcast.to(room).emit('onjoin',peerid)
-     })
-     socket.on('stream',(data,room)=>{
-         console.log("Room "+room+" message "+data)
-         io.in(room).emit('onstream',data)
-     })
-     socket.on('peerid',(data)=>{
-         console.log(data)
-         //emit to all except the sender
-         socket.broadcast.emit('onpeerid',data)
-     })
-     socket.on('onchange',(data,room)=>{
-           socket.to(room).emit('onrecv',data)
-     })
-     socket.on('onmousedown',(x,y,room)=>{
-       
-         socket.to(room).emit('onmousedown',x,y)
-     })
-     socket.on('onmousemove',(x,y,room)=>{
-         socket.to(room).emit('onmousemove',x,y)
-     })
-     socket.on('onmouseup',(room)=>{
-         socket.to(room).emit('onmouseup')
-     })
-     socket.on('clear',(room)=>{
-         socket.to(room).emit('clear')
-     })
-   
-     socket.on('disconnect',()=>{
-         console.log("Client disconnected ")
-     })
- })
 
 
 httpsServer.listen(8080, function () {
