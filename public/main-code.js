@@ -139,8 +139,8 @@ socket.on('onrecv', (data) => {
 
 //whiteboard code
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width =700;
+canvas.height = 600;
 ctx.strokeStyle = '#B706BF';
 canvas.addEventListener('mousedown', (e) => {
   let x = e.offsetX;
@@ -152,6 +152,45 @@ canvas.addEventListener('mousedown', (e) => {
   canvas.addEventListener('mouseup', onMouseUp);
   canvas.addEventListener('mouseout', onMouseOut);
 });
+//touch events
+canvas.addEventListener('touchstart', (e) => {
+  let x = e.touches[0].clientX;
+  let y = e.touches[0].clientY;
+  //move relative to canvas
+  x -= canvas.getBoundingClientRect().left;
+  y -= canvas.getBoundingClientRect().top;
+ 
+ 
+  
+  socket.emit('onmousedown', x, y, roomid);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  //KEEP SCREEN FROM SCROLLING
+  e.preventDefault();
+
+  canvas.addEventListener('touchmove', onTouchMove);
+  canvas.addEventListener('touchend', onTouchEnd);
+});
+function onTouchMove(e) {
+  let x = e.touches[0].clientX;
+  let y = e.touches[0].clientY;
+  //move relative to canvas
+  x -= canvas.getBoundingClientRect().left;
+  y -= canvas.getBoundingClientRect().top;
+  
+  socket.emit('onmousemove', x, y, roomid);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+}
+function onTouchEnd() {
+  socket.emit('onmouseup', roomid);
+  canvas.removeEventListener('touchmove', onTouchMove);
+  canvas.removeEventListener('touchend', onTouchEnd);
+}
+
+
+
+
 function onMouseMove(e) {
   let x = e.offsetX;
   let y = e.offsetY;
@@ -174,9 +213,13 @@ function onMouseOut() {
 socket.on('onmousedown', (x, y) => {
   ctx.beginPath();
   ctx.moveTo(x, y);
+
   canvas.addEventListener('mousemove', onMouseMove);
   canvas.addEventListener('mouseup', onMouseUp);
   canvas.addEventListener('mouseout', onMouseOut);
+
+
+
 });
 socket.on('onmousemove', (x, y) => {
   ctx.lineTo(x, y);
@@ -202,6 +245,9 @@ function clearCanvas() {
 function changeColor(color) {
   ctx.strokeStyle = color;
 }
+
+
+
 
 
 
